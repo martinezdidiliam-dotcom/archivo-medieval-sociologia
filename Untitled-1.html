@@ -1,0 +1,5095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Archivo Medieval de la Sociología</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   PALETA MEDIEVAL
+========================================================= */
+
+:root{
+    --pergamino:#ead7ad;
+    --pergamino-claro:#f6e9c8;
+    --pergamino-oscuro:#c6a56f;
+
+    --tinta:#241710;
+    --marron:#4b2d1d;
+    --cuero:#70462a;
+
+    --dorado:#b89452;
+    --oro-claro:#dfc681;
+
+    --borgona:#641f29;
+    --borgona-claro:#7c3039;
+
+    --verde:#344737;
+    --verde-claro:#52634d;
+
+    --sombra:
+        0 18px 45px rgba(38,20,8,.35);
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+html{
+    scroll-padding-top:100px;
+}
+
+body{
+    margin:0;
+
+    color:var(--tinta);
+
+    font-family:"Libre Baskerville",serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(100,31,41,.12),
+            transparent 23%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(52,71,55,.12),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.18),
+            transparent 55%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(70,40,20,.12),
+            transparent 12%,
+            transparent 88%,
+            rgba(70,40,20,.13)
+        ),
+
+        var(--pergamino);
+
+    overflow-x:hidden;
+}
+
+
+/* textura */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    opacity:.13;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 4px,
+            rgba(50,30,15,.18) 5px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(90,55,25,.08) 9px
+        );
+}
+
+
+/* viñeta */
+
+body::after{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9998;
+
+    box-shadow:
+        inset 0 0 130px rgba(35,18,8,.42),
+        inset 0 0 250px rgba(35,18,8,.15);
+}
+
+
+/* =========================================================
+   BARRA DE PROGRESO
+========================================================= */
+
+.progress{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    height:4px;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--borgona),
+            var(--oro-claro),
+            var(--verde)
+        );
+
+    z-index:10000;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+nav{
+    position:sticky;
+
+    top:0;
+
+    z-index:500;
+
+    background:
+        linear-gradient(
+            90deg,
+            #251610,
+            #432719,
+            #281811
+        );
+
+    color:#f6e8c5;
+
+    border-bottom:4px double var(--dorado);
+
+    box-shadow:
+        0 8px 25px rgba(30,15,5,.5),
+        inset 0 -2px rgba(223,198,129,.2);
+}
+
+.nav-inner{
+    width:min(1280px,95%);
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:12px 0;
+}
+
+.logo{
+    font-family:"Cinzel",serif;
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    color:var(--oro-claro);
+
+    white-space:nowrap;
+}
+
+.logo::before{
+    content:"✦ ";
+}
+
+.logo::after{
+    content:" ✦";
+}
+
+.nav-links{
+    display:flex;
+
+    gap:4px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+}
+
+.nav-links a{
+    color:#f4e5c4;
+
+    text-decoration:none;
+
+    padding:9px 10px;
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+    border:1px solid transparent;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:white;
+
+    border-color:var(--dorado);
+
+    background:rgba(184,148,82,.12);
+
+    box-shadow:
+        inset 0 0 12px rgba(215,189,120,.08);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:92vh;
+
+    display:grid;
+
+    place-items:center;
+
+    text-align:center;
+
+    padding:90px 20px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    inset:25px;
+
+    border:2px solid var(--dorado);
+
+    box-shadow:
+        inset 0 0 0 7px rgba(100,31,41,.10),
+        inset 0 0 0 9px rgba(184,148,82,.40),
+        0 0 30px rgba(72,42,20,.12);
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    inset:39px;
+
+    border:1px solid var(--cuero);
+}
+
+.hero-content{
+    position:relative;
+
+    z-index:2;
+
+    max-width:950px;
+
+    padding:45px 30px;
+}
+
+.ornament{
+    color:var(--borgona);
+
+    font-size:27px;
+
+    letter-spacing:10px;
+}
+
+.eyebrow{
+    font-family:"Cinzel",serif;
+
+    letter-spacing:5px;
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    color:var(--cuero);
+}
+
+.hero h1{
+    font-family:"Uncial Antiqua","Cinzel",serif;
+
+    font-size:clamp(40px,7vw,78px);
+
+    line-height:1.05;
+
+    margin:22px 0;
+
+    color:var(--marron);
+
+    text-shadow:
+        2px 2px 0 rgba(184,148,82,.25),
+        4px 5px 12px rgba(55,30,15,.18);
+}
+
+.hero h1::first-letter{
+    color:var(--borgona);
+}
+
+.hero p{
+    font-size:16px;
+
+    line-height:2;
+
+    max-width:760px;
+
+    margin:0 auto 30px;
+
+    color:#473326;
+}
+
+.stamp{
+    display:inline-block;
+
+    border:2px solid var(--borgona);
+
+    color:var(--borgona);
+
+    padding:11px 18px;
+
+    transform:rotate(-2deg);
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    background:rgba(91,32,40,.05);
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.btn{
+    display:inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--marron),
+            #2b1a12
+        );
+
+    color:#f8e9c4;
+
+    padding:13px 22px;
+
+    text-decoration:none;
+
+    border:2px solid var(--dorado);
+
+    font-family:"Cinzel",serif;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin:6px;
+
+    box-shadow:
+        0 6px 14px rgba(40,20,10,.25);
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--borgona),
+            #32151a
+        );
+
+    box-shadow:
+        0 10px 22px rgba(40,20,10,.35);
+}
+
+
+/* =========================================================
+   SEPARADORES
+========================================================= */
+
+.divider{
+    text-align:center;
+
+    margin:35px 0;
+
+    color:var(--dorado);
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:8px;
+}
+
+.divider::before,
+.divider::after{
+    content:" ───────── ";
+
+    color:var(--cuero);
+}
+
+
+/* =========================================================
+   SECCIONES
+========================================================= */
+
+.section{
+    padding:95px 0;
+
+    position:relative;
+}
+
+.section:nth-child(even){
+    background:rgba(91,32,40,.035);
+}
+
+.container{
+    width:min(1160px,92%);
+
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:50px;
+}
+
+.section-title .small{
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    color:var(--borgona);
+}
+
+.section-title h2{
+    font-family:"Uncial Antiqua","Cinzel",serif;
+
+    font-size:clamp(30px,5vw,52px);
+
+    margin:14px 0;
+
+    color:var(--marron);
+
+    text-shadow:
+        2px 3px 8px rgba(50,25,10,.15);
+}
+
+.section-title p{
+    max-width:780px;
+
+    margin:auto;
+
+    line-height:1.9;
+}
+
+
+/* =========================================================
+   PAPEL / PERGAMINO
+========================================================= */
+
+.paper{
+    position:relative;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255,255,255,.25),
+            transparent 30%
+        ),
+
+        rgba(255,242,207,.70);
+
+    border:2px solid rgba(107,67,39,.55);
+
+    padding:35px;
+
+    box-shadow:var(--sombra);
+
+    margin-bottom:25px;
+}
+
+.paper::before{
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:1px solid rgba(184,148,82,.65);
+
+    pointer-events:none;
+}
+
+.paper::after{
+    content:"✦";
+
+    position:absolute;
+
+    top:-17px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:var(--dorado);
+
+    background:var(--pergamino);
+
+    padding:0 15px;
+
+    font-size:18px;
+}
+
+.paper h3{
+    color:var(--marron);
+
+    font-family:"Cinzel",serif;
+
+    font-size:23px;
+}
+
+.paper h4{
+    color:var(--borgona);
+
+    font-family:"Cinzel",serif;
+}
+
+.paper p,
+.paper li{
+    line-height:1.9;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   CAPITULAR
+========================================================= */
+
+.paper p:first-of-type::first-letter{
+    font-family:"Uncial Antiqua",serif;
+
+    font-size:45px;
+
+    float:left;
+
+    line-height:.8;
+
+    margin-right:7px;
+
+    color:var(--borgona);
+}
+
+
+/* =========================================================
+   SEMANA
+========================================================= */
+
+.week{
+    border-top:1px solid rgba(107,67,39,.35);
+}
+
+.week-number{
+    display:inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--borgona),
+            #39161b
+        );
+
+    color:#f7e8c4;
+
+    padding:10px 17px;
+
+    margin-bottom:18px;
+
+    font-family:"Cinzel",serif;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    border:1px solid var(--dorado);
+
+    box-shadow:
+        4px 5px 10px rgba(40,20,10,.25);
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(240px,1fr));
+
+    gap:22px;
+}
+
+.card{
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,248,225,.82),
+            rgba(226,203,158,.65)
+        );
+
+    border:1px solid rgba(107,67,39,.55);
+
+    padding:25px;
+
+    box-shadow:
+        0 10px 25px rgba(45,25,12,.22),
+        inset 0 0 25px rgba(184,148,82,.08);
+
+    transition:.35s;
+
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:7px;
+
+    border:1px solid rgba(184,148,82,.35);
+
+    pointer-events:none;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+
+    box-shadow:
+        0 18px 35px rgba(45,25,12,.30),
+        inset 0 0 25px rgba(184,148,82,.12);
+}
+
+.card h3{
+    font-family:"Cinzel",serif;
+
+    color:var(--marron);
+}
+
+.card p,
+.card li{
+    line-height:1.8;
+
+    font-size:13px;
+}
+
+.card ul{
+    padding-left:20px;
+}
+
+
+/* =========================================================
+   PERFILES DE PENSADORES
+========================================================= */
+
+.thinkers{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+}
+
+@media(max-width:900px){
+
+    .thinkers{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .thinkers{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =========================================================
+   IMAGEN
+========================================================= */
+
+.image-placeholder{
+    height:190px;
+
+    border:2px solid var(--cuero);
+
+    display:grid;
+
+    place-items:center;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(91,32,40,.10),
+            transparent 60%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(75,45,29,.12),
+            rgba(255,255,255,.22)
+        );
+
+    color:var(--cuero);
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:2px;
+
+    padding:15px;
+
+    box-shadow:
+        inset 0 0 25px rgba(50,25,10,.12);
+}
+
+.image-placeholder::before{
+    content:"✦";
+
+    font-size:25px;
+
+    color:var(--dorado);
+}
+
+.image-placeholder span{
+    font-size:11px;
+}
+
+.image-placeholder{
+    height:190px;
+    position:relative;
+    overflow:hidden;
+    padding:0;
+}
+
+.image-placeholder img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:0% 18%;
+    display:block;
+}
+
+
+/* =========================================================
+   BOTÓN PERFIL
+========================================================= */
+
+.open-btn{
+    width:100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--marron),
+            #2b1a12
+        );
+
+    color:#f5e7c4;
+
+    border:1px solid var(--dorado);
+
+    padding:12px;
+
+    cursor:pointer;
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:1px;
+
+    transition:.3s;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.open-btn:hover{
+    background:var(--borgona);
+
+    transform:scale(1.02);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(20,10,5,.84);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:min(900px,96vw);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    position:relative;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255,255,255,.25),
+            transparent 30%
+        ),
+
+        var(--pergamino-claro);
+
+    border:4px double var(--dorado);
+
+    padding:45px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.60),
+        inset 0 0 50px rgba(75,45,29,.13);
+
+    animation:abrirModal .30s ease;
+}
+
+@keyframes abrirModal{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(25px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.modal-content::before{
+    content:"";
+
+    position:absolute;
+
+    inset:10px;
+
+    border:1px solid rgba(107,67,39,.65);
+
+    pointer-events:none;
+}
+
+.modal-content::after{
+    content:"✦   ❦   ✦";
+
+    position:absolute;
+
+    top:13px;
+
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    color:var(--dorado);
+
+    letter-spacing:6px;
+}
+
+.close-modal{
+    position:absolute;
+
+    right:18px;
+
+    top:18px;
+
+    width:40px;
+
+    height:40px;
+
+    border:1px solid var(--dorado);
+
+    background:var(--marron);
+
+    color:#fff0cc;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:5;
+}
+
+.close-modal:hover{
+    background:var(--borgona);
+}
+
+.modal-title{
+    text-align:center;
+
+    font-family:"Uncial Antiqua","Cinzel",serif;
+
+    color:var(--marron);
+
+    font-size:clamp(27px,5vw,45px);
+
+    margin:20px 0 8px;
+}
+
+.modal-subtitle{
+    text-align:center;
+
+    font-family:"Cinzel",serif;
+
+    color:var(--borgona);
+
+    letter-spacing:2px;
+
+    margin-bottom:30px;
+}
+
+.modal-info{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+    margin-bottom:30px;
+}
+
+.info-box{
+    padding:17px;
+
+    background:rgba(91,32,40,.06);
+
+    border-left:4px solid var(--borgona);
+
+    border-top:1px solid rgba(107,67,39,.3);
+
+    box-shadow:
+        inset 0 0 15px rgba(100,31,41,.03);
+}
+
+.info-box strong{
+    display:block;
+
+    font-family:"Cinzel",serif;
+
+    color:var(--cuero);
+
+    margin-bottom:6px;
+}
+
+.modal-section{
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:1px dashed var(--cuero);
+}
+
+.modal-section h4{
+    font-family:"Cinzel",serif;
+
+    color:var(--borgona);
+
+    font-size:17px;
+}
+
+.modal-section p,
+.modal-section li{
+    line-height:1.9;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   LÍNEA DE TIEMPO
+========================================================= */
+
+.timeline{
+    position:relative;
+
+    max-width:1050px;
+
+    margin:auto;
+}
+
+.timeline::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+    bottom:0;
+
+    width:4px;
+
+    background:
+        linear-gradient(
+            var(--borgona),
+            var(--dorado),
+            var(--verde),
+            var(--borgona)
+        );
+
+    transform:translateX(-50%);
+
+    box-shadow:
+        0 0 8px rgba(70,35,15,.25);
+}
+
+.event{
+    width:50%;
+
+    padding:20px 45px;
+
+    position:relative;
+}
+
+.event:nth-child(odd){
+    margin-left:0;
+
+    text-align:right;
+}
+
+.event:nth-child(even){
+    margin-left:50%;
+}
+
+.event::after{
+    content:"";
+
+    position:absolute;
+
+    top:34px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:var(--borgona);
+
+    border:4px solid var(--oro-claro);
+
+    box-shadow:
+        0 0 0 3px var(--marron),
+        0 0 15px rgba(91,32,40,.35);
+}
+
+.event:nth-child(odd)::after{
+    right:-13px;
+}
+
+.event:nth-child(even)::after{
+    left:-13px;
+}
+
+.event-box{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,248,225,.92),
+            rgba(226,203,158,.70)
+        );
+
+    border:2px solid var(--cuero);
+
+    padding:24px;
+
+    box-shadow:var(--sombra);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    position:relative;
+}
+
+.event-box::before{
+    content:"";
+
+    position:absolute;
+
+    inset:6px;
+
+    border:1px solid rgba(184,148,82,.35);
+
+    pointer-events:none;
+}
+
+.event-box:hover{
+    transform:scale(1.025);
+
+    border-color:var(--dorado);
+
+    box-shadow:
+        0 18px 35px rgba(45,25,12,.32);
+}
+
+.event-date{
+    font-family:"Cinzel",serif;
+
+    color:var(--borgona);
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    font-weight:bold;
+}
+
+.event-box h3{
+    margin:9px 0;
+
+    font-family:"Cinzel",serif;
+
+    color:var(--marron);
+}
+
+.event-box p{
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.event-more{
+    display:inline-block;
+
+    margin-top:9px;
+
+    color:var(--borgona);
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   AGIL
+========================================================= */
+
+.agil{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+
+    margin:30px 0;
+}
+
+.agil button{
+    min-height:130px;
+
+    border:2px solid var(--cuero);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,248,225,.8),
+            rgba(226,203,158,.7)
+        );
+
+    cursor:pointer;
+
+    font-family:"Cinzel",serif;
+
+    font-size:16px;
+
+    color:var(--tinta);
+
+    transition:.3s;
+
+    box-shadow:
+        0 7px 15px rgba(40,20,10,.15);
+}
+
+.agil button b{
+    font-size:30px;
+
+    color:var(--borgona);
+}
+
+.agil button:hover{
+    transform:translateY(-5px);
+
+    border-color:var(--dorado);
+}
+
+#agilResult{
+    min-height:90px;
+
+    padding:23px;
+
+    border-left:6px solid var(--borgona);
+
+    background:rgba(255,248,225,.7);
+
+    line-height:1.8;
+
+    box-shadow:var(--sombra);
+}
+
+
+/* =========================================================
+   WEBER
+========================================================= */
+
+.mode-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+
+    gap:15px;
+}
+
+.mode-btn{
+    padding:22px;
+
+    background:rgba(255,248,225,.75);
+
+    border:1px solid var(--cuero);
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-family:"Libre Baskerville",serif;
+
+    transition:.3s;
+}
+
+.mode-btn:hover{
+    transform:translateY(-4px);
+
+    border-color:var(--dorado);
+
+    background:rgba(91,32,40,.07);
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz{
+    max-width:850px;
+
+    margin:auto;
+}
+
+.question{
+    padding:25px;
+
+    margin-bottom:20px;
+
+    background:rgba(255,248,225,.75);
+
+    border:1px solid var(--cuero);
+
+    box-shadow:var(--sombra);
+}
+
+.question h3{
+    font-family:"Cinzel",serif;
+
+    color:var(--marron);
+}
+
+.option{
+    display:block;
+
+    margin:10px 0;
+
+    padding:12px;
+
+    cursor:pointer;
+
+    background:rgba(91,32,40,.045);
+
+    border:1px solid transparent;
+
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:var(--dorado);
+}
+
+.result{
+    margin-top:25px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:2px solid var(--dorado);
+
+    display:none;
+
+    background:rgba(255,248,225,.9);
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+.music-box{
+    position:fixed;
+
+    bottom:20px;
+
+    right:20px;
+
+    z-index:1000;
+
+    background:
+        linear-gradient(
+            145deg,
+            #382116,
+            #21130e
+        );
+
+    border:2px solid var(--dorado);
+
+    padding:12px 15px;
+
+    color:#f6e8c5;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
+
+    font-family:"Cinzel",serif;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.music-box button{
+    border:1px solid var(--dorado);
+
+    background:var(--borgona);
+
+    color:#fff0cc;
+
+    padding:8px 11px;
+
+    cursor:pointer;
+
+    font-family:"Cinzel",serif;
+}
+
+.music-box button:hover{
+    background:var(--cuero);
+}
+
+.music-title{
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    background:
+        linear-gradient(
+            90deg,
+            #21130e,
+            #3b2117,
+            #21130e
+        );
+
+    color:#f4e4c1;
+
+    text-align:center;
+
+    padding:65px 20px;
+
+    border-top:5px double var(--dorado);
+}
+
+.footer h2{
+    font-family:"Uncial Antiqua","Cinzel",serif;
+
+    color:var(--oro-claro);
+}
+
+.footer p{
+    line-height:1.8;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav-inner{
+        flex-direction:column;
+    }
+
+    .nav-links{
+        justify-content:center;
+    }
+
+    .timeline::before{
+        left:12px;
+    }
+
+    .event,
+    .event:nth-child(even){
+        width:100%;
+
+        margin-left:0;
+
+        text-align:left;
+
+        padding-left:40px;
+    }
+
+    .event::after,
+    .event:nth-child(odd)::after,
+    .event:nth-child(even)::after{
+        left:3px;
+
+        right:auto;
+    }
+
+    .agil{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero::before{
+        inset:15px;
+    }
+
+    .hero::after{
+        inset:27px;
+    }
+
+    .hero-content{
+        padding:40px 20px;
+    }
+
+    .paper{
+        padding:25px 20px;
+    }
+
+    .modal-content{
+        padding:32px 20px;
+    }
+
+    .agil{
+        grid-template-columns:1fr;
+    }
+
+    .music-box{
+        left:15px;
+
+        right:15px;
+
+        bottom:12px;
+
+        justify-content:center;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     PROGRESO
+========================================================= -->
+
+<div class="progress" id="progress"></div>
+
+
+<!-- =========================================================
+     NAVEGACIÓN
+========================================================= -->
+
+<nav>
+
+<div class="nav-inner">
+
+<div class="logo">
+ARCHIVO SOCIOLÓGICO
+</div>
+
+<div class="nav-links">
+
+<a href="#inicio">Inicio</a>
+
+<a href="#semana1">Semana 1</a>
+
+<a href="#semana2">Semana 2</a>
+
+<a href="#semana3">Semana 3</a>
+
+<a href="#semana4">Semana 4</a>
+
+<a href="#semana5">Semana 5</a>
+
+<a href="#quiz">Quiz</a>
+
+<a href="#referencias">Referencias</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+     MÚSICA
+========================================================= -->
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="Love Story.m4a" type="audio/mpeg">
+</audio>
+
+<div class="music-box">
+
+<span class="music-title">
+♫ MÚSICA DEL ARCHIVO
+</span>
+
+<button id="musicBtn" onclick="toggleMusic()">
+▶ Activar
+</button>
+
+</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="hero" id="inicio">
+
+<div class="hero-content">
+
+<div class="ornament">
+❦ ✦ ❦
+</div>
+
+<div class="eyebrow">
+Crónica académica · Cinco semanas
+</div>
+
+<h1>
+Historia y pensamiento de la Sociología
+</h1>
+
+<p>
+Un recorrido histórico por el nacimiento de las Ciencias Sociales,
+los grandes pensadores, las principales teorías sociológicas,
+los cambios de la sociedad y algunos de los desafíos
+del mundo contemporáneo.
+</p>
+
+<div class="stamp">
+ARCHIVO DE ESTUDIO · EDICIÓN MEDIEVAL
+</div>
+
+<div class="divider">
+✦
+</div>
+
+<a class="btn" href="#semana1">
+Comenzar recorrido →
+</a>
+
+<a class="btn" href="#quiz">
+Ir al desafío ✦
+</a>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     SEMANA 1
+========================================================= -->
+
+<section class="section" id="semana1">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Primera entrada del archivo
+</div>
+
+<h2>
+Semana 1 · Ciencia y Ciencias Sociales
+</h2>
+
+<p>
+Del concepto de ciencia al surgimiento de las disciplinas
+que estudian la sociedad.
+</p>
+
+</div>
+
+
+<div class="paper">
+
+<span class="week-number">
+SEMANA 01
+</span>
+
+<h3>
+¿Qué es la ciencia?
+</h3>
+
+<p>
+La ciencia puede entenderse como un conjunto de conocimientos
+racionales, ciertos o probables, obtenidos mediante métodos,
+organizados sistemáticamente y verificables. Busca explicar
+fenómenos, descubrir relaciones y construir conocimientos
+que puedan ser comunicados y revisados.
+</p>
+
+<p>
+La investigación científica utiliza procedimientos ordenados
+para observar la realidad, formular preguntas, plantear
+hipótesis cuando corresponde, analizar información y construir
+explicaciones. Por ello, la ciencia no consiste simplemente
+en acumular datos, sino en producir conocimiento organizado
+y fundamentado.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Fáctica</h3>
+<p>
+Parte de hechos y fenómenos observables de la realidad.
+Busca estudiar acontecimientos que pueden ser analizados.
+</p>
+</div>
+
+<div class="card">
+<h3>Metódica</h3>
+<p>
+Utiliza procedimientos y métodos para producir conocimiento
+de manera organizada.
+</p>
+</div>
+
+<div class="card">
+<h3>Analítica</h3>
+<p>
+Descompone los problemas en diferentes partes para
+estudiarlos con mayor claridad.
+</p>
+</div>
+
+<div class="card">
+<h3>Sistemática</h3>
+<p>
+Organiza los conocimientos de forma relacionada y coherente.
+</p>
+</div>
+
+<div class="card">
+<h3>Explicativa</h3>
+<p>
+Busca comprender causas, relaciones y condiciones que
+permiten explicar los fenómenos.
+</p>
+</div>
+
+<div class="card">
+<h3>Predictiva</h3>
+<p>
+A partir del conocimiento disponible puede formular
+expectativas o explicaciones sobre situaciones futuras.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="divider">
+❦ ✦ ❦
+</div>
+
+
+<div class="paper">
+
+<h3>
+El origen de las Ciencias Sociales
+</h3>
+
+<p>
+Las primeras reflexiones sobre la sociedad aparecen desde
+la Antigüedad. En civilizaciones como Grecia, Egipto y Roma
+existían conocimientos relacionados con la política, el derecho,
+la organización social, la educación y las formas de gobierno.
+Sin embargo, todavía no constituían ciencias sociales modernas.
+</p>
+
+<p>
+Durante el Renacimiento de los siglos XV y XVI se fortalecieron
+la observación, la investigación y nuevas formas de pensamiento.
+Posteriormente, durante la Ilustración del siglo XVIII,
+la razón y el conocimiento adquirieron una importancia central.
+</p>
+
+<p>
+Las transformaciones producidas por la Revolución Francesa
+y la Revolución Industrial modificaron profundamente las
+instituciones, la economía, las ciudades, el trabajo y las
+relaciones entre diferentes grupos sociales. Estos cambios
+favorecieron la aparición de nuevas disciplinas dedicadas
+al estudio sistemático de la sociedad.
+</p>
+
+<div class="image-placeholder">
+    <img src="Franse-Revolutie-van-1848.jpg" alt="Infraestructura económica y superestructura">
+</div>
+
+
+<br>
+
+
+<div class="paper">
+
+<h3>
+Principales Ciencias Sociales
+</h3>
+
+<div class="grid">
+
+<div class="card">
+<h3>Economía</h3>
+<p>
+Estudia la producción, distribución y consumo de bienes y
+servicios, así como el uso de recursos.
+</p>
+</div>
+
+<div class="card">
+<h3>Derecho</h3>
+<p>
+Estudia las normas, instituciones jurídicas y relaciones
+relacionadas con la justicia y la convivencia.
+</p>
+</div>
+
+<div class="card">
+<h3>Historia</h3>
+<p>
+Analiza acontecimientos del pasado y los procesos mediante
+los cuales se desarrollan las sociedades.
+</p>
+</div>
+
+<div class="card">
+<h3>Sociología</h3>
+<p>
+Estudia científicamente la sociedad, las relaciones sociales,
+los grupos, las instituciones y los fenómenos colectivos.
+</p>
+</div>
+
+<div class="card">
+<h3>Antropología</h3>
+<p>
+Estudia al ser humano, sus culturas, pueblos, formas de vida
+y diversidad social.
+</p>
+</div>
+
+<div class="card">
+<h3>Ciencia Política</h3>
+<p>
+Estudia el poder, el gobierno, las instituciones políticas,
+la autoridad y la toma de decisiones.
+</p>
+</div>
+
+<div class="card">
+<h3>Demografía</h3>
+<p>
+Analiza estadísticamente las poblaciones humanas, incluyendo
+su tamaño, distribución, composición y cambios.
+</p>
+</div>
+
+<div class="card">
+<h3>Geografía Humana</h3>
+<p>
+Estudia las relaciones entre las sociedades humanas,
+los territorios y los espacios donde viven.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SEMANA 2
+========================================================= -->
+
+<section class="section week" id="semana2">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Segunda entrada del archivo
+</div>
+
+<h2>
+Semana 2 · ¿Qué es la Sociología?
+</h2>
+
+<p>
+Conoce a seis pensadores fundamentales y descubre
+qué estudia la sociología.
+</p>
+
+</div>
+
+
+<div class="thinkers">
+
+
+<!-- COMTE -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="Auguste-Comte2.jpg" alt="Auguste Comte">
+</div>
+
+<h3>
+Auguste Comte
+</h3>
+
+<p>
+Pensador francés fundamental para la formación de la
+sociología y del positivismo.
+</p>
+
+<button class="open-btn" onclick="openThinker('comte')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<!-- DURKHEIM -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="durkeim.jpg" alt="Émile Durkheim">
+</div>
+
+<h3>
+Émile Durkheim
+</h3>
+
+<p>
+Estudió los hechos sociales y la forma en que las sociedades
+mantienen la cohesión.
+</p>
+
+<button class="open-btn" onclick="openThinker('durkheim')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<!-- WEBER -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="weber.jpg" alt="Max Weber">
+</div>
+
+<h3>
+Max Weber
+</h3>
+
+<p>
+Desarrolló una sociología comprensiva centrada en la acción
+social y el significado.
+</p>
+
+<button class="open-btn" onclick="openThinker('weber')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<!-- MARX -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="marx.jpg" alt="Max Weber">
+</div>
+
+<h3>
+Karl Marx
+</h3>
+
+<p>
+Analizó el capitalismo, las relaciones de producción,
+las clases sociales y el conflicto.
+</p>
+
+<button class="open-btn" onclick="openThinker('marx')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<!-- BOURDIEU -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="Bourdieu.jpg" alt="Max Weber">
+</div>
+
+<h3>
+Pierre Bourdieu
+</h3>
+
+<p>
+Analizó la desigualdad social mediante conceptos como
+habitus, campo y diferentes formas de capital.
+</p>
+
+<button class="open-btn" onclick="openThinker('bourdieu')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<!-- GIDDENS -->
+
+<div class="card thinker">
+
+<div class="image-placeholder">
+    <img src="Gidenns.jpg" alt="Max Weber">
+</div>
+
+<h3>
+Anthony Giddens
+</h3>
+
+<p>
+Relacionó la estructura social con la capacidad de acción
+de las personas.
+</p>
+
+<button class="open-btn" onclick="openThinker('giddens')">
+✦ Ver perfil
+</button>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="paper">
+
+<h3>
+¿Qué estudia la Sociología?
+</h3>
+
+<p>
+La sociología estudia las relaciones sociales, las instituciones,
+los grupos, las organizaciones y los procesos mediante los cuales
+las personas construyen y transforman la vida colectiva.
+</p>
+
+<div class="grid">
+
+<div>
+<h4>Sociedad y estructuras</h4>
+<p>
+Desde familias y grupos hasta comunidades, organizaciones
+y naciones.
+</p>
+</div>
+
+<div>
+<h4>Comportamiento social</h4>
+<p>
+Analiza cómo las personas actúan e interactúan en diferentes
+contextos sociales.
+</p>
+</div>
+
+<div>
+<h4>Fenómenos colectivos</h4>
+<p>
+Estudia migración, cultura, religión, estratificación,
+movimientos sociales y otros fenómenos.
+</p>
+</div>
+
+<div>
+<h4>Cambio social</h4>
+<p>
+Analiza procesos de transformación, continuidad y ruptura
+dentro de las sociedades.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SEMANA 3 - LÍNEA DE TIEMPO
+========================================================= -->
+
+<section class="section" id="semana3">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Tercera entrada del archivo
+</div>
+
+<h2>
+Semana 3 · Historia de la Sociología
+</h2>
+
+<p>
+Haz clic en cada acontecimiento para abrir su
+expediente histórico.
+</p>
+
+</div>
+
+
+<div class="timeline">
+
+
+<!-- 1 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('antiguedad')">
+
+<div class="event-date">
+ANTIGÜEDAD
+</div>
+
+<h3>
+Primeras reflexiones sobre la sociedad
+</h3>
+
+<p>
+Filósofos y pensadores de la Antigüedad reflexionaron
+sobre política, justicia, gobierno y organización social.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('renacimiento')">
+
+<div class="event-date">
+SIGLOS XV – XVI
+</div>
+
+<h3>
+Renacimiento
+</h3>
+
+<p>
+El pensamiento europeo experimentó cambios importantes
+y aumentó el interés por la observación y el conocimiento.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('ilustracion')">
+
+<div class="event-date">
+SIGLO XVIII
+</div>
+
+<h3>
+La Ilustración
+</h3>
+
+<p>
+La razón, la crítica y el conocimiento científico adquirieron
+un papel central.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('francesa')">
+
+<div class="event-date">
+1789 – 1799
+</div>
+
+<h3>
+Revolución Francesa
+</h3>
+
+<p>
+Transformó las estructuras políticas y sociales de Francia
+y tuvo repercusiones en Europa.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('industrial')">
+
+<div class="event-date">
+SIGLOS XVIII – XIX
+</div>
+
+<h3>
+Revolución Industrial
+</h3>
+
+<p>
+La industrialización modificó la producción, el trabajo,
+las ciudades y las relaciones sociales.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('nacimiento')">
+
+<div class="event-date">
+SIGLO XIX
+</div>
+
+<h3>
+Nacimiento de la Sociología
+</h3>
+
+<p>
+Las grandes transformaciones sociales impulsaron el desarrollo
+de una disciplina dedicada a estudiar científicamente la sociedad.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('siglo20')">
+
+<div class="event-date">
+SIGLO XX
+</div>
+
+<h3>
+Expansión de las teorías sociológicas
+</h3>
+
+<p>
+Aparecieron y se consolidaron diferentes corrientes
+para explicar la vida social.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div class="event">
+
+<div class="event-box" onclick="openEvent('siglo21')">
+
+<div class="event-date">
+SIGLO XXI
+</div>
+
+<h3>
+Sociología contemporánea
+</h3>
+
+<p>
+La disciplina analiza globalización, tecnología, desigualdad,
+movimientos sociales y nuevos desafíos.
+</p>
+
+<span class="event-more">
+Abrir expediente →
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<br><br>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>Funcionalismo</h3>
+<p>
+Parsons y Merton analizaron las funciones de las instituciones
+y la manera en que contribuyen al funcionamiento de los sistemas sociales.
+</p>
+</div>
+
+<div class="card">
+<h3>Teoría del conflicto</h3>
+<p>
+Analiza diferencias de poder, intereses y recursos entre
+grupos sociales.
+</p>
+</div>
+
+<div class="card">
+<h3>Interaccionismo simbólico</h3>
+<p>
+Mead y Blumer estudiaron cómo las personas construyen
+significados mediante la interacción.
+</p>
+</div>
+
+<div class="card">
+<h3>Teoría crítica</h3>
+<p>
+La Escuela de Frankfurt analizó capitalismo, cultura,
+medios de comunicación y formas de dominación.
+</p>
+</div>
+
+<div class="card">
+<h3>Habitus</h3>
+<p>
+Bourdieu explicó cómo las disposiciones sociales y los
+diferentes capitales influyen en las prácticas.
+</p>
+</div>
+
+<div class="card">
+<h3>Estructuración</h3>
+<p>
+Giddens estudió la relación entre las estructuras sociales
+y las acciones de las personas.
+</p>
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="paper">
+
+<h3>
+Sociología del siglo XXI
+</h3>
+
+<ul>
+
+<li>
+<b>Globalización:</b>
+migraciones, intercambios culturales, relaciones económicas
+y problemas de alcance mundial.
+</li>
+
+<li>
+<b>Sociedad digital:</b>
+Internet, redes sociales, inteligencia artificial,
+identidad digital y privacidad.
+</li>
+
+<li>
+<b>Nuevas desigualdades:</b>
+diferencias relacionadas con recursos económicos,
+educación, empleo y acceso tecnológico.
+</li>
+
+<li>
+<b>Movimientos sociales:</b>
+derechos humanos, igualdad, ambiente, justicia social
+y participación ciudadana.
+</li>
+
+<li>
+<b>Riesgos globales:</b>
+cambio climático, pandemias, conflictos,
+desplazamientos y crisis económicas.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SEMANA 4
+========================================================= -->
+
+<section class="section week" id="semana4">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Cuarta entrada del archivo
+</div>
+
+<h2>
+Semana 4 · Grandes exponentes
+</h2>
+
+<p>
+Un museo virtual de los principales pensadores estudiados.
+Pulsa “Ver perfil” para abrir su expediente.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="saint.jpg" alt="Saint-Simon">
+</div>
+
+<h3>
+Henri de Saint-Simon
+</h3>
+
+<p>
+Precursor de la sociología y del pensamiento social moderno.
+</p>
+
+<button class="open-btn" onclick="openThinker('saintsimon')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="Auguste-Comte2.jpg"Saint-Simon">
+</div>
+
+<h3>
+Auguste Comte
+</h3>
+
+<p>
+Desarrolló el positivismo y fue fundamental para la formación
+de la sociología.
+</p>
+
+<button class="open-btn" onclick="openThinker('comte')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="herbert.jpg" alt="Saint-Simon">
+</div>
+
+<h3>
+Herbert Spencer
+</h3>
+
+<p>
+Estudió la sociedad desde una perspectiva evolucionista.
+</p>
+
+<button class="open-btn" onclick="openThinker('spencer')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="durkeim.jpg" alt="Saint-Simon">
+</div>
+
+<h3>
+Émile Durkheim
+</h3>
+
+<p>
+Estableció los hechos sociales como un objeto fundamental
+del análisis sociológico.
+</p>
+
+<button class="open-btn" onclick="openThinker('durkheim')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="marx.jpg" alt="Saint-Simon">
+</div>
+
+<h3>
+Karl Marx
+</h3>
+
+<p>
+Analizó capitalismo, producción, clases sociales y conflicto.
+</p>
+
+<button class="open-btn" onclick="openThinker('marx')">
+✦ Ver perfil
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="image-placeholder">
+    <img src="weber.jpg" alt="Saint-Simon">
+</div>
+
+<h3>
+Max Weber
+</h3>
+
+<p>
+Desarrolló la sociología comprensiva y estudió la acción social.
+</p>
+
+<button class="open-btn" onclick="openThinker('weber')">
+✦ Ver perfil
+</button>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="paper">
+
+<h3>
+Mapa rápido de conceptos
+</h3>
+
+<div class="grid">
+
+<div>
+<h4>Comte</h4>
+<p>
+Positivismo → Ley de los tres estadios → Sociología científica.
+</p>
+</div>
+
+<div>
+<h4>Durkheim</h4>
+<p>
+Hechos sociales → método → solidaridad → integración.
+</p>
+</div>
+
+<div>
+<h4>Marx</h4>
+<p>
+Producción → clases → conflicto → transformación social.
+</p>
+</div>
+
+<div>
+<h4>Weber</h4>
+<p>
+Acción social → significado → comprensión → dominación.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SEMANA 5
+========================================================= -->
+
+<section class="section" id="semana5">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Quinta entrada del archivo
+</div>
+
+<h2>
+Semana 5 · Teorías y análisis social
+</h2>
+
+<p>
+Explora el funcionalismo, el materialismo histórico,
+el conflicto y la acción social.
+</p>
+
+</div>
+
+
+<!-- AGIL -->
+
+<div class="paper">
+
+<h3>
+Parsons y el modelo AGIL
+</h3>
+
+<p>
+El análisis de Talcott Parsons considera la sociedad como
+un sistema formado por diferentes partes relacionadas.
+Para mantenerse y desarrollarse, un sistema social debe
+resolver determinadas necesidades funcionales.
+</p>
+
+<div class="agil">
+
+<button onclick="showAgil('A')">
+<b>A</b><br>
+Adaptación
+</button>
+
+<button onclick="showAgil('G')">
+<b>G</b><br>
+Logro de metas
+</button>
+
+<button onclick="showAgil('I')">
+<b>I</b><br>
+Integración
+</button>
+
+<button onclick="showAgil('L')">
+<b>L</b><br>
+Latencia
+</button>
+
+</div>
+
+<div id="agilResult">
+Haz clic en una de las cuatro funciones para descubrir su significado.
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>Status</h3>
+<p>
+Posición que una persona ocupa dentro de una estructura social.
+Puede ser atribuido o adquirido.
+</p>
+</div>
+
+<div class="card">
+<h3>Rol</h3>
+<p>
+Conjunto de expectativas y comportamientos asociados
+con una determinada posición social.
+</p>
+</div>
+
+<div class="card">
+<h3>Grupo social</h3>
+<p>
+Conjunto de personas que mantienen relaciones e interacciones
+y comparten determinadas características o vínculos.
+</p>
+</div>
+
+<div class="card">
+<h3>Categoría social</h3>
+<p>
+Personas agrupadas por una característica compartida,
+aunque no necesariamente interactúen entre ellas.
+</p>
+</div>
+
+<div class="card">
+<h3>Estratificación</h3>
+<p>
+Forma en que una sociedad organiza las diferencias
+y desigualdades entre posiciones sociales.
+</p>
+</div>
+
+<div class="card">
+<h3>Socialización</h3>
+<p>
+Proceso mediante el cual las personas aprenden normas,
+valores, conocimientos y formas de comportamiento.
+</p>
+</div>
+
+</div>
+
+
+<br>
+
+
+<!-- MATERIALISMO -->
+
+<div class="paper">
+
+<h3>
+Materialismo histórico
+</h3>
+
+<p>
+El materialismo histórico es una perspectiva asociada
+principalmente con Karl Marx y Friedrich Engels. Analiza
+la historia considerando las condiciones materiales de vida,
+las fuerzas productivas y las relaciones de producción.
+</p>
+
+<p>
+Desde esta perspectiva, las formas de organización económica
+se relacionan con las instituciones y las ideas de una sociedad.
+Las contradicciones y conflictos existentes dentro de una
+estructura social pueden contribuir a producir transformaciones.
+</p>
+
+<div class="image-placeholder">
+    <img src="Superestructura.jpg" alt="Infraestructura económica y superestructura">
+</div>
+
+
+<br>
+
+
+<!-- MODOS DE PRODUCCIÓN -->
+
+<div class="paper">
+
+<h3>
+Modos de producción
+</h3>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Comunismo primitivo
+</h3>
+
+<p>
+Concepto utilizado en determinadas interpretaciones históricas
+para describir formas tempranas de organización comunitaria,
+cooperación y subsistencia.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Esclavismo
+</h3>
+
+<p>
+Sistemas históricos en los que personas eran sometidas a
+relaciones de esclavización y utilizadas como fuerza de trabajo.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Feudalismo
+</h3>
+
+<p>
+Forma de organización medieval caracterizada por una economía
+principalmente rural y relaciones sociales vinculadas a la tierra.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Capitalismo
+</h3>
+
+<p>
+Sistema basado en la propiedad privada de los medios de producción,
+el mercado y el trabajo asalariado.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<!-- CONFLICTO -->
+
+<div class="paper">
+
+<h3>
+Teoría del conflicto
+</h3>
+
+<p>
+La teoría del conflicto considera que las diferencias de intereses,
+poder y recursos forman parte de la vida social. Los grupos pueden
+tener objetivos distintos y competir por recursos materiales,
+políticos, económicos o simbólicos.
+</p>
+
+<div class="grid">
+
+<div>
+<h4>Poder</h4>
+<p>
+Capacidad de influir sobre decisiones, recursos o comportamientos.
+</p>
+</div>
+
+<div>
+<h4>Intereses</h4>
+<p>
+Necesidades, objetivos y aspiraciones que pueden entrar en competencia.
+</p>
+</div>
+
+<div>
+<h4>Recursos</h4>
+<p>
+Bienes y oportunidades cuya distribución puede ser desigual.
+</p>
+</div>
+
+<div>
+<h4>Estructuras</h4>
+<p>
+Organizaciones y relaciones que pueden mantener o modificar
+las desigualdades.
+</p>
+</div>
+
+<div>
+<h4>Ideologías</h4>
+<p>
+Ideas y valores que pueden justificar, explicar o cuestionar
+determinadas relaciones sociales.
+</p>
+</div>
+
+<div>
+<h4>Cambio social</h4>
+<p>
+Transformaciones producidas mediante tensiones, conflictos,
+movimientos y procesos históricos.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<!-- WEBER -->
+
+<div class="paper">
+
+<h3>
+Weber: descubre la acción social
+</h3>
+
+<p>
+Para Max Weber, una acción es social cuando el significado
+que la persona le atribuye está orientado hacia la conducta
+de otras personas.
+</p>
+
+<div class="mode-grid">
+
+
+<button class="mode-btn" onclick="showMode('fines')">
+
+<b>
+Racional con arreglo a fines
+</b>
+
+<br><br>
+
+Se seleccionan medios considerando un objetivo determinado.
+
+</button>
+
+
+<button class="mode-btn" onclick="showMode('valores')">
+
+<b>
+Racional con arreglo a valores
+</b>
+
+<br><br>
+
+La acción está guiada por una convicción o principio.
+
+</button>
+
+
+<button class="mode-btn" onclick="showMode('afectiva')">
+
+<b>
+Afectiva
+</b>
+
+<br><br>
+
+Está relacionada principalmente con emociones.
+
+</button>
+
+
+<button class="mode-btn" onclick="showMode('tradicional')">
+
+<b>
+Tradicional
+</b>
+
+<br><br>
+
+Se realiza principalmente por costumbre o hábito.
+
+</button>
+
+</div>
+
+
+<div id="modeResult"
+class="paper"
+style="margin-top:20px">
+
+Selecciona una categoría para ver un ejemplo educativo.
+
+</div>
+
+</div>
+
+
+<!-- CRÍTICAS -->
+
+<div class="paper">
+
+<h3>
+Críticas al funcionalismo
+</h3>
+
+<ul>
+
+<li>
+Puede presentar una imagen demasiado estática de la sociedad.
+</li>
+
+<li>
+Puede dar demasiado peso a la integración y el consenso.
+</li>
+
+<li>
+Puede prestar menos atención al conflicto y a la autonomía individual.
+</li>
+
+<li>
+Desde perspectivas marxistas se ha criticado su énfasis
+en la estabilidad de las instituciones.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUIZ
+========================================================= -->
+
+<section class="section" id="quiz">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Desafío final
+</div>
+
+<h2>
+Quiz del Archivo
+</h2>
+
+<p>
+Comprueba cuánto recuerdas de las cinco semanas.
+</p>
+
+</div>
+
+
+<div class="quiz">
+
+
+<div class="question">
+
+<h3>
+1. ¿Quién acuñó el término sociología?
+</h3>
+
+<label class="option">
+<input type="radio" name="q1" value="0">
+Karl Marx
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="1">
+Auguste Comte
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="0">
+Max Weber
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="0">
+Pierre Bourdieu
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+2. ¿Cuál es el objeto central de estudio propuesto por Durkheim?
+</h3>
+
+<label class="option">
+<input type="radio" name="q2" value="1">
+Los hechos sociales
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="0">
+Los planetas
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="0">
+Solo las decisiones individuales
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+3. ¿Qué concepto se relaciona con Marx?
+</h3>
+
+<label class="option">
+<input type="radio" name="q3" value="0">
+Verstehen
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="1">
+Lucha de clases
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="0">
+AGIL
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+4. ¿Qué significa la A de AGIL?
+</h3>
+
+<label class="option">
+<input type="radio" name="q4" value="1">
+Adaptación
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="0">
+Autoridad
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="0">
+Acción
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+5. ¿Cuándo una acción es social según Weber?
+</h3>
+
+<label class="option">
+<input type="radio" name="q5" value="1">
+Cuando su significado está orientado hacia otras personas
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="0">
+Cuando ocurre sin relación con otras personas
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="0">
+Cuando siempre pertenece a una institución
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+6. ¿Qué teoría analiza especialmente las diferencias
+de poder e intereses entre grupos?
+</h3>
+
+<label class="option">
+<input type="radio" name="q6" value="1">
+Teoría del conflicto
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="0">
+Funcionalismo
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="0">
+Positivismo
+</label>
+
+</div>
+
+
+<button class="btn" onclick="checkQuiz()">
+Comprobar respuestas ✦
+</button>
+
+<button class="btn" onclick="location.reload()">
+Reiniciar
+</button>
+
+
+<div class="result" id="quizResult"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     REFERENCIAS
+========================================================= -->
+
+<section class="section" id="referencias">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="small">
+Última página
+</div>
+
+<h2>
+Referencias
+</h2>
+
+<p>
+Fuentes y autores trabajados durante el recorrido.
+</p>
+
+</div>
+
+
+<div class="paper">
+
+<ul>
+
+<li>
+Marín, A. L. (1995).
+<i>Fundamentos de teoría sociológica</i>.
+</li>
+
+<li>
+Ritzer, G. (1997).
+<i>Teoría sociológica contemporánea</i>.
+McGraw-Hill.
+</li>
+
+<li>
+Ritzer, G. (2002).
+<i>Teoría sociológica moderna</i>.
+McGraw-Hill.
+</li>
+
+<li>
+Giddens, A. (1982).
+<i>Las nuevas reglas del método sociológico</i>.
+</li>
+
+<li>
+Material de estudio correspondiente a las semanas 1–5 del curso.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     VENTANA EMERGENTE
+========================================================= -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<button class="close-modal" onclick="closeModal()">
+×
+</button>
+
+<h2 class="modal-title" id="modalTitle">
+Título
+</h2>
+
+<div class="modal-subtitle" id="modalSubtitle">
+Subtítulo
+</div>
+
+<div class="modal-info" id="modalInfo">
+</div>
+
+<div id="modalBody">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+<div class="ornament">
+❦ ✦ ❦
+</div>
+
+<h2>
+✦ FIN DEL RECORRIDO ✦
+</h2>
+
+<p>
+Has recorrido el nacimiento de las Ciencias Sociales,
+los principales pensadores, las teorías sociológicas
+y algunos de los grandes desafíos de la sociedad contemporánea.
+</p>
+
+<p>
+Archivo Medieval de la Sociología · Proyecto académico
+</p>
+
+</footer>
+
+
+<script>
+
+
+/* =========================================================
+   BARRA DE PROGRESO
+========================================================= */
+
+window.addEventListener("scroll",function(){
+
+    const scrollTop=window.scrollY;
+
+    const total=
+        document.documentElement.scrollHeight
+        -
+        window.innerHeight;
+
+    const porcentaje=
+        total>0
+        ?
+        (scrollTop/total)*100
+        :
+        0;
+
+    document.getElementById("progress").style.width=
+        porcentaje+"%";
+
+});
+
+
+/* =========================================================
+   DATOS DE PENSADORES
+========================================================= */
+
+const thinkers={
+
+
+/* ---------------------------------------------------------
+   COMTE
+--------------------------------------------------------- */
+
+comte:{
+
+title:"Auguste Comte",
+
+subtitle:"1798 – 1857 · Francia",
+
+info:[
+    ["Periodo","Siglo XIX"],
+    ["Lugar","Francia"],
+    ["Campo","Filosofía y sociología"],
+    ["Concepto","Positivismo"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Auguste Comte fue un pensador francés fundamental para
+la formación de la sociología. Es conocido especialmente
+por desarrollar el positivismo y por utilizar el término
+“sociología” para referirse al estudio sistemático de la sociedad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Principales aportes</h4>
+
+<p>
+Comte defendió que la sociedad podía ser estudiada mediante
+un enfoque científico. Consideraba importante observar,
+comparar y buscar regularidades para comprender los fenómenos
+sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Ley de los tres estadios</h4>
+
+<p>
+Propuso que el pensamiento humano atraviesa tres grandes
+formas de explicación: el estadio teológico, el metafísico
+y el positivo o científico.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Positivismo · Orden · Progreso · Estática social ·
+Dinámica social · Ley de los tres estadios.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   DURKHEIM
+--------------------------------------------------------- */
+
+durkheim:{
+
+title:"Émile Durkheim",
+
+subtitle:"1858 – 1917 · Francia",
+
+info:[
+    ["Periodo","Finales del siglo XIX"],
+    ["Lugar","Francia"],
+    ["Campo","Sociología"],
+    ["Concepto","Hechos sociales"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Émile Durkheim fue uno de los principales fundadores
+de la sociología académica. Se interesó por explicar
+cómo se mantiene la cohesión dentro de las sociedades.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Hechos sociales</h4>
+
+<p>
+Durkheim propuso estudiar los hechos sociales como
+fenómenos que existen más allá de las decisiones de
+una sola persona y que pueden ejercer influencia
+sobre los individuos.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ División del trabajo</h4>
+
+<p>
+Analizó cómo la división del trabajo puede relacionarse
+con diferentes formas de solidaridad. Distinguió entre
+solidaridad mecánica y solidaridad orgánica.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Hechos sociales · Solidaridad mecánica · Solidaridad orgánica ·
+División del trabajo · Cohesión social.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   WEBER
+--------------------------------------------------------- */
+
+weber:{
+
+title:"Max Weber",
+
+subtitle:"1864 – 1920 · Alemania",
+
+info:[
+    ["Periodo","Siglos XIX – XX"],
+    ["Lugar","Alemania"],
+    ["Campo","Sociología"],
+    ["Concepto","Acción social"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Max Weber fue uno de los principales sociólogos alemanes.
+Desarrolló una perspectiva comprensiva que buscaba interpretar
+el significado que las personas atribuyen a sus acciones.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Acción social</h4>
+
+<p>
+Para Weber, una acción es social cuando el significado
+que la persona le atribuye está orientado hacia la conducta
+de otras personas.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Burocracia y autoridad</h4>
+
+<p>
+Weber estudió las formas de autoridad, la burocracia,
+la racionalización y las transformaciones de las sociedades
+modernas.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Acción social · Verstehen · Tipos ideales · Burocracia ·
+Autoridad · Racionalización.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   MARX
+--------------------------------------------------------- */
+
+marx:{
+
+title:"Karl Marx",
+
+subtitle:"1818 – 1883 · Alemania",
+
+info:[
+    ["Periodo","Siglo XIX"],
+    ["Lugar","Europa"],
+    ["Campo","Crítica social y economía política"],
+    ["Concepto","Lucha de clases"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Karl Marx fue un pensador del siglo XIX cuyas ideas
+tuvieron una gran influencia en el análisis de las
+clases sociales, el capitalismo y el cambio histórico.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Capitalismo</h4>
+
+<p>
+Marx estudió el funcionamiento del capitalismo y las
+relaciones entre quienes poseen los medios de producción
+y quienes trabajan a cambio de un salario.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Lucha de clases</h4>
+
+<p>
+Su análisis puso especial atención en los conflictos
+entre diferentes clases sociales y en la manera en que
+las relaciones económicas pueden influir en la organización
+de la sociedad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Clases sociales · Capitalismo · Lucha de clases ·
+Trabajo · Producción · Materialismo histórico.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   BOURDIEU
+--------------------------------------------------------- */
+
+bourdieu:{
+
+title:"Pierre Bourdieu",
+
+subtitle:"1930 – 2002 · Francia",
+
+info:[
+    ["Periodo","Siglo XX"],
+    ["Lugar","Francia"],
+    ["Campo","Sociología contemporánea"],
+    ["Concepto","Habitus"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Pierre Bourdieu fue uno de los sociólogos más influyentes
+del siglo XX. Estudió la desigualdad, la educación,
+la cultura y los mecanismos mediante los cuales pueden
+reproducirse las diferencias sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Habitus</h4>
+
+<p>
+El habitus hace referencia a disposiciones aprendidas
+a través de la experiencia social que influyen en la
+manera en que las personas perciben, piensan y actúan.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Capital cultural</h4>
+
+<p>
+Bourdieu analizó diferentes formas de capital, incluyendo
+el económico, cultural y social, y explicó cómo estos
+pueden relacionarse con las posiciones sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Habitus · Campo · Capital cultural · Capital económico ·
+Capital social · Reproducción social.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   GIDDENS
+--------------------------------------------------------- */
+
+giddens:{
+
+title:"Anthony Giddens",
+
+subtitle:"1938 · Reino Unido",
+
+info:[
+    ["Periodo","Siglos XX – XXI"],
+    ["Lugar","Reino Unido"],
+    ["Campo","Sociología contemporánea"],
+    ["Concepto","Estructuración"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién es?</h4>
+
+<p>
+Anthony Giddens es un sociólogo británico conocido
+especialmente por desarrollar la teoría de la estructuración.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Estructura y acción</h4>
+
+<p>
+Giddens analizó la relación entre las estructuras sociales
+y las acciones de las personas. Las estructuras influyen
+en las prácticas sociales, pero esas mismas prácticas
+también contribuyen a reproducir o transformar las estructuras.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Modernidad</h4>
+
+<p>
+También estudió las características de las sociedades
+modernas, incluyendo los cambios producidos por la
+globalización y las transformaciones institucionales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Conceptos clave</h4>
+
+<p>
+Estructuración · Agencia · Estructura · Reflexividad ·
+Modernidad · Globalización.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   SAINT-SIMON
+--------------------------------------------------------- */
+
+saintsimon:{
+
+title:"Henri de Saint-Simon",
+
+subtitle:"1760 – 1825 · Francia",
+
+info:[
+    ["Periodo","Finales XVIII – XIX"],
+    ["Lugar","Francia"],
+    ["Campo","Pensamiento social"],
+    ["Concepto","Física social"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Henri de Saint-Simon fue un pensador francés considerado
+precursor de la sociología. Reflexionó sobre la organización
+de la sociedad después de las transformaciones políticas
+y económicas de su época.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Ciencia y sociedad</h4>
+
+<p>
+Defendió la importancia del conocimiento científico para
+comprender los procesos sociales y propuso estudiar la
+sociedad de una manera sistemática.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Industria</h4>
+
+<p>
+Otorgó una gran importancia a la producción, la industria,
+el conocimiento y la organización del trabajo dentro de
+la sociedad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Importancia histórica</h4>
+
+<p>
+Sus planteamientos influyeron en pensadores posteriores
+y contribuyeron al desarrollo temprano del pensamiento
+sociológico.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   SPENCER
+--------------------------------------------------------- */
+
+spencer:{
+
+title:"Herbert Spencer",
+
+subtitle:"1820 – 1903 · Reino Unido",
+
+info:[
+    ["Periodo","Siglo XIX"],
+    ["Lugar","Reino Unido"],
+    ["Campo","Filosofía social"],
+    ["Concepto","Evolución social"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Quién fue?</h4>
+
+<p>
+Herbert Spencer fue un filósofo y sociólogo británico
+que estudió la sociedad desde una perspectiva evolucionista.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Sociedad y organismo</h4>
+
+<p>
+Spencer utilizó comparaciones entre la sociedad y los
+organismos vivos para explicar cómo diferentes partes
+pueden cumplir funciones relacionadas.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Evolución social</h4>
+
+<p>
+Consideró que las sociedades podían experimentar procesos
+de diferenciación y transformación a lo largo del tiempo.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Importancia histórica</h4>
+
+<p>
+Sus ideas tuvieron influencia durante el siglo XIX.
+Algunas de sus interpretaciones fueron posteriormente
+criticadas, especialmente aquellas relacionadas con
+el llamado darwinismo social.
+</p>
+
+</div>
+
+`
+}
+
+};
+
+
+/* =========================================================
+   DATOS DE LA LÍNEA DE TIEMPO
+========================================================= */
+
+const events={
+
+
+/* ---------------------------------------------------------
+   ANTIGÜEDAD
+--------------------------------------------------------- */
+
+antiguedad:{
+
+title:"Primeras reflexiones sobre la sociedad",
+
+subtitle:"Antigüedad · Grecia, Roma y otras civilizaciones",
+
+info:[
+    ["Periodo","Antigüedad"],
+    ["Contexto","Sociedades antiguas"],
+    ["Temas","Política y organización"],
+    ["Importancia","Primeras reflexiones sociales"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Contexto histórico</h4>
+
+<p>
+Desde la Antigüedad las sociedades humanas desarrollaron
+formas de organización política, económica, religiosa
+y familiar. Pensadores antiguos reflexionaron sobre
+la justicia, el gobierno y la convivencia.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Grecia</h4>
+
+<p>
+Filósofos como Platón y Aristóteles reflexionaron sobre
+la política, la ciudadanía, las formas de gobierno,
+la educación y la organización de la comunidad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Importancia para la Sociología</h4>
+
+<p>
+Aunque todavía no existía la sociología como ciencia,
+estas reflexiones constituyeron antecedentes importantes
+para el pensamiento posterior sobre la sociedad.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   RENACIMIENTO
+--------------------------------------------------------- */
+
+renacimiento:{
+
+title:"Renacimiento",
+
+subtitle:"Siglos XV – XVI",
+
+info:[
+    ["Periodo","Siglos XV – XVI"],
+    ["Lugar","Europa"],
+    ["Contexto","Humanismo"],
+    ["Importancia","Nuevas formas de pensamiento"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Contexto histórico</h4>
+
+<p>
+El Renacimiento produjo importantes cambios culturales
+e intelectuales en Europa. Se fortaleció el humanismo
+y aumentó el interés por estudiar al ser humano y su
+relación con el mundo.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevas formas de conocimiento</h4>
+
+<p>
+La observación, la investigación y la recuperación de
+conocimientos clásicos contribuyeron a transformar
+las formas de comprender la realidad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Relación con las Ciencias Sociales</h4>
+
+<p>
+Estos cambios ayudaron a crear un ambiente intelectual
+en el que posteriormente se desarrollarían nuevas
+formas sistemáticas de estudiar la sociedad.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   ILUSTRACIÓN
+--------------------------------------------------------- */
+
+ilustracion:{
+
+title:"La Ilustración",
+
+subtitle:"Siglo XVIII",
+
+info:[
+    ["Periodo","Siglo XVIII"],
+    ["Lugar","Europa"],
+    ["Idea central","Razón"],
+    ["Importancia","Pensamiento crítico"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Contexto histórico</h4>
+
+<p>
+La Ilustración fue un movimiento intelectual europeo
+que otorgó gran importancia a la razón, la observación,
+la educación y la crítica de las ideas tradicionales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevas ideas</h4>
+
+<p>
+Los pensadores ilustrados reflexionaron sobre la libertad,
+las instituciones, el gobierno, la educación y la organización
+de las sociedades.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Relación con la Sociología</h4>
+
+<p>
+La confianza en la razón y en la posibilidad de estudiar
+la realidad mediante conocimientos sistemáticos contribuyó
+al contexto intelectual en el que posteriormente surgirían
+las Ciencias Sociales.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   REVOLUCIÓN FRANCESA
+--------------------------------------------------------- */
+
+francesa:{
+
+title:"Revolución Francesa",
+
+subtitle:"1789 – 1799",
+
+info:[
+    ["Periodo","1789 – 1799"],
+    ["Lugar","Francia"],
+    ["Contexto","Crisis del Antiguo Régimen"],
+    ["Impacto","Transformación política"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Contexto</h4>
+
+<p>
+La Revolución Francesa fue un proceso de profundas
+transformaciones políticas y sociales que comenzó en 1789.
+Cuestionó estructuras del Antiguo Régimen y transformó
+la organización política francesa.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevas ideas políticas</h4>
+
+<p>
+El proceso revolucionario estuvo relacionado con debates
+sobre ciudadanía, derechos, soberanía y nuevas formas
+de organización política.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Relación con la Sociología</h4>
+
+<p>
+Los cambios revolucionarios plantearon preguntas sobre
+el orden social, el conflicto, las instituciones y
+la transformación de las sociedades.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Consecuencia histórica</h4>
+
+<p>
+La Revolución Francesa tuvo repercusiones en Europa
+y contribuyó a transformar las estructuras políticas
+y sociales de su época.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   REVOLUCIÓN INDUSTRIAL
+--------------------------------------------------------- */
+
+industrial:{
+
+title:"Revolución Industrial",
+
+subtitle:"Siglos XVIII – XIX",
+
+info:[
+    ["Periodo","Siglos XVIII – XIX"],
+    ["Lugar","Europa"],
+    ["Transformación","Industrialización"],
+    ["Impacto","Trabajo y urbanización"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Contexto histórico</h4>
+
+<p>
+La Revolución Industrial transformó las formas de producción
+mediante el desarrollo de nuevas tecnologías, fábricas
+y sistemas de trabajo.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Transformaciones sociales</h4>
+
+<p>
+El crecimiento industrial estuvo acompañado por procesos
+de urbanización, cambios en las condiciones de trabajo
+y aparición de nuevas relaciones entre diferentes grupos sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Burguesía y proletariado</h4>
+
+<p>
+El desarrollo industrial contribuyó a fortalecer nuevas
+divisiones sociales relacionadas con la propiedad, el trabajo
+y las relaciones de producción.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Relación con la Sociología</h4>
+
+<p>
+Las enormes transformaciones sociales producidas por la
+industrialización impulsaron nuevas preguntas sobre el
+funcionamiento y el cambio de las sociedades.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   NACIMIENTO
+--------------------------------------------------------- */
+
+nacimiento:{
+
+title:"Nacimiento de la Sociología",
+
+subtitle:"Siglo XIX",
+
+info:[
+    ["Periodo","Siglo XIX"],
+    ["Figura destacada","Auguste Comte"],
+    ["Objetivo","Estudio científico"],
+    ["Contexto","Grandes transformaciones"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ ¿Qué ocurrió?</h4>
+
+<p>
+Durante el siglo XIX se consolidó la sociología como
+un campo dedicado al estudio sistemático de la sociedad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ ¿Por qué apareció?</h4>
+
+<p>
+Las transformaciones producidas por la Revolución Industrial,
+la urbanización, los cambios políticos y los nuevos conflictos
+sociales generaron numerosas preguntas sobre la organización
+de la sociedad.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Pensadores importantes</h4>
+
+<p>
+Saint-Simon, Auguste Comte, Karl Marx, Émile Durkheim
+y Max Weber realizaron contribuciones fundamentales
+al desarrollo del pensamiento sociológico.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Importancia</h4>
+
+<p>
+La sociología comenzó a desarrollar conceptos, métodos
+y teorías para analizar científicamente los fenómenos sociales.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   SIGLO XX
+--------------------------------------------------------- */
+
+siglo20:{
+
+title:"La Sociología en el siglo XX",
+
+subtitle:"1900 – 1999",
+
+info:[
+    ["Periodo","Siglo XX"],
+    ["Campo","Sociología académica"],
+    ["Corrientes","Múltiples"],
+    ["Tema","Sociedad moderna"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Expansión de la disciplina</h4>
+
+<p>
+Durante el siglo XX la sociología se consolidó en universidades
+e instituciones de investigación y amplió considerablemente
+sus temas de estudio.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevas corrientes</h4>
+
+<p>
+Se desarrollaron perspectivas como el funcionalismo,
+el interaccionismo simbólico, la teoría crítica,
+la teoría del conflicto y diferentes enfoques sobre
+la estructura y la acción social.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevos temas</h4>
+
+<p>
+La disciplina comenzó a estudiar con mayor profundidad
+la educación, las organizaciones, la cultura, los medios
+de comunicación, las desigualdades, las ciudades,
+los movimientos sociales y muchos otros fenómenos.
+</p>
+
+</div>
+
+`
+},
+
+
+/* ---------------------------------------------------------
+   SIGLO XXI
+--------------------------------------------------------- */
+
+siglo21:{
+
+title:"La Sociología en el siglo XXI",
+
+subtitle:"2000 – actualidad",
+
+info:[
+    ["Periodo","Siglo XXI"],
+    ["Contexto","Sociedad global"],
+    ["Tema","Transformación digital"],
+    ["Desafíos","Desigualdad y cambio"]
+],
+
+body:`
+
+<div class="modal-section">
+
+<h4>✦ Sociedad contemporánea</h4>
+
+<p>
+La sociología actual estudia sociedades cada vez más
+conectadas y caracterizadas por transformaciones
+tecnológicas, económicas, culturales y ambientales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Tecnología</h4>
+
+<p>
+Internet, redes sociales, inteligencia artificial,
+comunicación digital e identidad en línea han creado
+nuevos fenómenos sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Desigualdad</h4>
+
+<p>
+Los sociólogos estudian diferencias relacionadas con
+ingresos, educación, empleo, acceso tecnológico,
+oportunidades y otras condiciones sociales.
+</p>
+
+</div>
+
+
+<div class="modal-section">
+
+<h4>✦ Nuevos desafíos</h4>
+
+<p>
+Globalización, migración, cambio climático, movimientos
+sociales, transformación del trabajo y cambios tecnológicos
+son algunos de los grandes temas de la sociología contemporánea.
+</p>
+
+</div>
+
+`
+}
+
+};
+
+
+/* =========================================================
+   ABRIR PERFIL
+========================================================= */
+
+function openThinker(id){
+
+    const person=thinkers[id];
+
+    if(!person){
+
+        console.error(
+            "No se encontró el personaje:",
+            id
+        );
+
+        return;
+    }
+
+    document.getElementById("modalTitle").textContent=
+        person.title;
+
+    document.getElementById("modalSubtitle").textContent=
+        person.subtitle;
+
+    let infoHTML="";
+
+    person.info.forEach(function(item){
+
+        infoHTML+=`
+
+        <div class="info-box">
+
+            <strong>
+                ${item[0]}
+            </strong>
+
+            ${item[1]}
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("modalInfo").innerHTML=
+        infoHTML;
+
+    document.getElementById("modalBody").innerHTML=
+        person.body;
+
+    document.getElementById("modal").classList.add("show");
+
+    document.body.style.overflow="hidden";
+}
+
+
+/* =========================================================
+   ABRIR EVENTO DE LÍNEA DE TIEMPO
+========================================================= */
+
+function openEvent(id){
+
+    const event=events[id];
+
+    if(!event){
+
+        console.error(
+            "No se encontró el evento:",
+            id
+        );
+
+        return;
+    }
+
+    document.getElementById("modalTitle").textContent=
+        event.title;
+
+    document.getElementById("modalSubtitle").textContent=
+        event.subtitle;
+
+    let infoHTML="";
+
+    event.info.forEach(function(item){
+
+        infoHTML+=`
+
+        <div class="info-box">
+
+            <strong>
+                ${item[0]}
+            </strong>
+
+            ${item[1]}
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("modalInfo").innerHTML=
+        infoHTML;
+
+    document.getElementById("modalBody").innerHTML=
+        event.body;
+
+    document.getElementById("modal").classList.add("show");
+
+    document.body.style.overflow="hidden";
+}
+
+
+/* =========================================================
+   CERRAR MODAL
+========================================================= */
+
+function closeModal(){
+
+    document.getElementById("modal").classList.remove("show");
+
+    document.body.style.overflow="";
+}
+
+
+/* cerrar al hacer clic fuera */
+
+document.getElementById("modal").addEventListener(
+    "click",
+    function(event){
+
+        if(event.target===this){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* cerrar con ESC */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key==="Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AGIL
+========================================================= */
+
+function showAgil(letter){
+
+    const text={
+
+        A:
+        "<b>Adaptación:</b> el sistema debe responder a su entorno, conseguir recursos y adaptarse a las condiciones que lo rodean.",
+
+        G:
+        "<b>Logro de metas:</b> el sistema establece objetivos y organiza recursos para alcanzarlos.",
+
+        I:
+        "<b>Integración:</b> coordina las diferentes partes del sistema y contribuye a mantener relaciones ordenadas entre ellas.",
+
+        L:
+        "<b>Latencia:</b> mantiene patrones culturales, valores y motivaciones que ayudan a conservar el sistema."
+
+    };
+
+    document.getElementById("agilResult").innerHTML=
+        text[letter];
+
+}
+
+
+/* =========================================================
+   ACCIÓN SOCIAL DE WEBER
+========================================================= */
+
+function showMode(mode){
+
+    const text={
+
+        fines:
+        "<b>Racional con arreglo a fines:</b> una persona organiza sus acciones y selecciona determinados medios para alcanzar un objetivo.",
+
+        valores:
+        "<b>Racional con arreglo a valores:</b> una persona actúa guiándose por una convicción, principio o valor que considera importante.",
+
+        afectiva:
+        "<b>Afectiva:</b> la acción está relacionada principalmente con emociones o estados afectivos.",
+
+        tradicional:
+        "<b>Tradicional:</b> la acción se realiza principalmente porque forma parte de una costumbre o hábito."
+
+    };
+
+    document.getElementById("modeResult").innerHTML=
+        text[mode];
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+function checkQuiz(){
+
+    const answers=[
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+    ];
+
+    let score=0;
+
+    let answered=0;
+
+    answers.forEach(function(q){
+
+        const selected=
+            document.querySelector(
+                'input[name="'+q+'"]:checked'
+            );
+
+        if(selected){
+
+            answered++;
+
+            score+=Number(selected.value);
+
+        }
+
+    });
+
+
+    const result=
+        document.getElementById("quizResult");
+
+    result.style.display="block";
+
+
+    if(answered<answers.length){
+
+        result.innerHTML=
+            "Te faltan <b>"+
+            (answers.length-answered)+
+            "</b> pregunta(s). Responde todas antes de comprobar.";
+
+        return;
+    }
+
+
+    let message="";
+
+
+    if(score===6){
+
+        message=
+            "✦ ¡PERFECTO! Dominas el archivo sociológico. ✦";
+
+    }
+
+    else if(score>=4){
+
+        message=
+            "✦ ¡Muy bien! Tienes un buen dominio de los contenidos. ✦";
+
+    }
+
+    else if(score>=3){
+
+        message=
+            "Vas por buen camino. Repasa algunas semanas y vuelve a intentarlo.";
+
+    }
+
+    else{
+
+        message=
+            "Es un buen momento para volver a recorrer el archivo.";
+
+    }
+
+
+    result.innerHTML=
+        "<h3>"+
+        message+
+        "</h3>"+
+        "<p>Tu puntuación es <b>"+
+        score+
+        "/6</b>.</p>";
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+const music=
+    document.getElementById("bgMusic");
+
+const musicBtn=
+    document.getElementById("musicBtn");
+
+
+music.volume=.20;
+
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+
+        .then(function(){
+
+            musicBtn.textContent=
+                "❚❚ Pausar";
+
+        })
+
+        .catch(function(){
+
+            musicBtn.textContent=
+                "▶ Activar";
+
+            alert(
+                "El navegador bloqueó la reproducción automática. Pulsa nuevamente el botón para activar la música."
+            );
+
+        });
+
+    }
+
+    else{
+
+        music.pause();
+
+        musicBtn.textContent=
+            "▶ Activar";
+
+    }
+
+}
+
+
+/* =========================================================
+   INTENTO DE AUTOPLAY
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        music.play()
+
+        .then(function(){
+
+            musicBtn.textContent=
+                "❚❚ Pausar";
+
+        })
+
+        .catch(function(){
+
+            /*
+            Algunos navegadores no permiten
+            reproducir audio automáticamente.
+            El botón queda disponible.
+            */
+
+            musicBtn.textContent=
+                "▶ Activar";
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+</html>
